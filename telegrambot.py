@@ -229,7 +229,35 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup= reply_markup
         )
 
+    elif query.data == "cl_language":
+        select_lan = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("English", callback_data="en")],
+                [InlineKeyboardButton("Spanish", callback_data="spanish")],
+                [InlineKeyboardButton("German", callback_data="German")],
+                [InlineKeyboardButton("Arab", callback_data="arabic")],
+                [InlineKeyboardButton("French", callback_data="french")],
+                [InlineKeyboardButton("German", callback_data="german")],
+                [InlineKeyboardButton("Arabic", callback_data="arabic")],
+                [InlineKeyboardButton("Portuguese", callback_data="portuguese")],
+                [InlineKeyboardButton("Italian", callback_data="italian")],
+                [InlineKeyboardButton("Russian", callback_data="russian")],
+                [InlineKeyboardButton("Hindi", callback_data="hindi")],
+                [InlineKeyboardButton("Korean", callback_data="korean")],
+                [InlineKeyboardButton("Swahili", callback_data="swahili")],
+                [InlineKeyboardButton("Turkish", callback_data="turkish")],
+                [InlineKeyboardButton("Mandarin", callback_data="chinese")],
+                [InlineKeyboardButton("Dutch", callback_data="dutch")],
+                [InlineKeyboardButton("Yoruba", callback_data="yoruba")],
+                [InlineKeyboardButton("Igbo", callback_data="igbo")],
+            ]
+        )
+        reply_markup = select_lan
 
+        await query.edit_message_text(
+            text=("Kindly Select Your Language:"),
+            reply_markup=reply_markup
+        )
 # ----- THIS IS TO FOR THE APP BUILDER TO RUN THE PYTHON BOT CODE
 app = ApplicationBuilder().token(API_Key).build()
 
