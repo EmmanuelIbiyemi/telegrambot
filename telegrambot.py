@@ -204,12 +204,7 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # --------------------------------------------THIS IS FOR THE SUBSCRIBE BUTTON ---------------------------------------
     elif query.data == "subscribe":
 
-        sub_button = InlineKeyboardMarkup([[
-            InlineKeyboardButton(
-                "Subscribe",
-                callback_data="subscribe"
-            )]]
-        )
+        sub_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Back To Main Menu", callback_data="main_menu")]])
 
 
         reply_markup = sub_button
@@ -237,10 +232,14 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 [InlineKeyboardButton("French", callback_data="french") , InlineKeyboardButton("German", callback_data="german")],
                 [InlineKeyboardButton("Arabic", callback_data="arabic") , InlineKeyboardButton("Portuguese", callback_data="portuguese")],
                 [InlineKeyboardButton("Italian", callback_data="italian") , InlineKeyboardButton("Russian", callback_data="russian")],
-                [InlineKeyboardButton("Hindi", callback_data="hindi") , InlineKeyboardButton("Korean", callback_data="korean")],
-                [InlineKeyboardButton("Swahili", callback_data="swahili") , InlineKeyboardButton("Turkish", callback_data="turkish")],
-                [InlineKeyboardButton("Mandarin", callback_data="chinese") , InlineKeyboardButton("Dutch", callback_data="dutch")],
-                [InlineKeyboardButton("Yoruba", callback_data="yoruba") , InlineKeyboardButton("Igbo", callback_data="igbo")],
+                [InlineKeyboardButton("previous", callback_data="back"), InlineKeyboardButton("1/2", callback_data="1/2") ,InlineKeyboardButton("next", callback_data="next")],
+
+                # [InlineKeyboardButton("Hindi", callback_data="hindi") , InlineKeyboardButton("Korean", callback_data="korean")],
+                # [InlineKeyboardButton("Swahili", callback_data="swahili") , InlineKeyboardButton("Turkish", callback_data="turkish")],
+                # [InlineKeyboardButton("Mandarin", callback_data="chinese") , InlineKeyboardButton("Dutch", callback_data="dutch")],
+                # [InlineKeyboardButton("Yoruba", callback_data="yoruba") , InlineKeyboardButton("Igbo", callback_data="igbo")],
+
+                [InlineKeyboardButton("🔁 Back To Main Menu", callback_data="main_menu")]
             ]
         )
         reply_markup = select_lan
