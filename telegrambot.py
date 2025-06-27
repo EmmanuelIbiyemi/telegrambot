@@ -232,32 +232,40 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == "cl_language":
         select_lan = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("English", callback_data="en")],
-                [InlineKeyboardButton("Spanish", callback_data="spanish")],
-                [InlineKeyboardButton("German", callback_data="German")],
-                [InlineKeyboardButton("Arab", callback_data="arabic")],
-                [InlineKeyboardButton("French", callback_data="french")],
-                [InlineKeyboardButton("German", callback_data="german")],
-                [InlineKeyboardButton("Arabic", callback_data="arabic")],
-                [InlineKeyboardButton("Portuguese", callback_data="portuguese")],
-                [InlineKeyboardButton("Italian", callback_data="italian")],
-                [InlineKeyboardButton("Russian", callback_data="russian")],
-                [InlineKeyboardButton("Hindi", callback_data="hindi")],
-                [InlineKeyboardButton("Korean", callback_data="korean")],
-                [InlineKeyboardButton("Swahili", callback_data="swahili")],
-                [InlineKeyboardButton("Turkish", callback_data="turkish")],
-                [InlineKeyboardButton("Mandarin", callback_data="chinese")],
-                [InlineKeyboardButton("Dutch", callback_data="dutch")],
-                [InlineKeyboardButton("Yoruba", callback_data="yoruba")],
-                [InlineKeyboardButton("Igbo", callback_data="igbo")],
+                [InlineKeyboardButton("English", callback_data="en") , InlineKeyboardButton("Spanish", callback_data="spanish")],
+                [InlineKeyboardButton("German", callback_data="German") , InlineKeyboardButton("Arab", callback_data="arabic")],
+                [InlineKeyboardButton("French", callback_data="french") , InlineKeyboardButton("German", callback_data="german")],
+                [InlineKeyboardButton("Arabic", callback_data="arabic") , InlineKeyboardButton("Portuguese", callback_data="portuguese")],
+                [InlineKeyboardButton("Italian", callback_data="italian") , InlineKeyboardButton("Russian", callback_data="russian")],
+                [InlineKeyboardButton("Hindi", callback_data="hindi") , InlineKeyboardButton("Korean", callback_data="korean")],
+                [InlineKeyboardButton("Swahili", callback_data="swahili") , InlineKeyboardButton("Turkish", callback_data="turkish")],
+                [InlineKeyboardButton("Mandarin", callback_data="chinese") , InlineKeyboardButton("Dutch", callback_data="dutch")],
+                [InlineKeyboardButton("Yoruba", callback_data="yoruba") , InlineKeyboardButton("Igbo", callback_data="igbo")],
             ]
         )
         reply_markup = select_lan
 
         await query.edit_message_text(
-            text=("Kindly Select Your Language:"),
+            text=("Please Selct the language you'd like to use from the list below"),
             reply_markup=reply_markup
         )
+
+    elif query.data == "en":
+        await update.message.reply_text(text="The en language is selected", )
+
+
+
+# This is the language selection function
+# Where if the user clicks a button for any of the lanague he can select
+# async def select_language(update: Update, context: ContextTypes.DEFAULT_TYPE):
+#     query = update.callback_query
+#     await query.answer()
+#
+#     if query.data == "en":
+#         await update.message.reply_text(text="The n language is selectec" )
+
+
+
 # ----- THIS IS TO FOR THE APP BUILDER TO RUN THE PYTHON BOT CODE
 app = ApplicationBuilder().token(API_Key).build()
 
@@ -274,6 +282,7 @@ app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, keyboard_message
 
 #---- THIS IS HANDLE THE CALL_BACK IN THE BOT FOR THE MAIN MENU AND STUFF
 app.add_handler(CallbackQueryHandler(handle_callback))
+# app.add_handler(CallbackQueryHandler(select_language))
 if app:
     print("Bot is starting")
 app.run_polling()
